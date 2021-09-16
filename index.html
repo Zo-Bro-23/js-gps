@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <p id= "p">
+
+        </p>
+        <p id= "random"></p>
+    </body>
+    <script>
+        navigator.geolocation.watchPosition((coords) => {
+        document.getElementById("p").innerHTML = `
+        Lat: ${coords.coords.latitude.toFixed(5)}
+        Long: ${coords.coords.longitude}
+        Accuracy: ${coords.coords.accuracy}
+        Altitude: ${coords.coords.altitude}
+        Altitude-accuracy: ${coords.coords.altitudeAccuracy}
+        `
+        console.log('hey')
+
+        document.getElementById("random").innerHTML = `${Math.random()}`
+    }, (err) => {
+        console.log(err.code)
+        if(err.code == err.PERMISSION_DENIED){ 
+        document.getElementById("p").innerHTML = 'Sorry. Permission denied.'
+    }}, {enableHighAccuracy: true}
+    )
+    </script>
+</html>
